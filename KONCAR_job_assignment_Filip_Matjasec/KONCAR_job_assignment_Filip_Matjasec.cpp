@@ -11,6 +11,10 @@
 #include <stack>
 
 namespace koncar {
+
+    // namespace alias for std::filesystem
+    namespace fs = std::filesystem;
+    
     // Task 1 - Version 1
     //****************************************************************
     /**
@@ -29,7 +33,10 @@ namespace koncar {
      * @details This function utilizes a variadic function template to accept any number of arguments
      * and adds them to the end of the container using the `emplace_back` operation.
      * It is suitable for situations where a variable number of elements need to be appended to a container which supports the 'emplace_back' function.
-     *
+     * By using a container rvalue reference (Container&&), this function can handle:
+     * 1. In-place construction
+     * 2. Modifying existing containers
+     * 
      * Example usage:
      * \code{.cpp}
      * std::vector<int> vector;
@@ -38,8 +45,7 @@ namespace koncar {
      * \endcode
      */
     template <typename Container, typename... Args>
-    void add_range(Container& container, Args&&... args)
-    {
+    void add_range(Container&& container, Args&&... args) {
         (container.emplace_back(std::forward<Args>(args)), ...);
     }
 
@@ -58,6 +64,9 @@ namespace koncar {
      *
      * @details This function takes an initializer list of elements and inserts them at the end of the container.
      * It is suitable for situations where a set of elements needs to be appended to a container using an initializer list.
+     * By using a container rvalue reference (Container&&), this function can handle:
+     * 1. In-place construction
+     * 2. Modifying existing containers
      *
      * Example usage:
      * \code{.cpp}
@@ -67,8 +76,7 @@ namespace koncar {
      * \endcode
      */
     template <typename Container, typename T>
-    void add_to_container(Container& container, std::initializer_list<T> values)
-    {
+    void add_range(Container&& container, std::initializer_list<T> values) {
         container.insert(container.end(), values.begin(), values.end());
     }
     
@@ -139,14 +147,14 @@ namespace koncar {
         return result;
     }
 
-    // Task 3
+    // Task 3 - Version 1
     //****************************************************************
     /**
      * @brief Computes the total size of all files and directories within a specified directory and its subdirectories.
      *
      * This function iterates over all files and directories within the specified directory and its subdirectories,
-     * accumulating the sizes of all encountered files. It handles errors that may occur during traversal or while
-     * obtaining file sizes.
+     * accumulating the sizes of all encountered files. Errors that occur during traversal or while processing individual
+     * entries are handled.
      *
      * @param path The path to the directory for which the size is to be computed.
      * @return The total size, in bytes, of all files and directories within the specified directory and its subdirectories.
@@ -162,34 +170,109 @@ namespace koncar {
      * // total_size contains the combined size of all files and directories within the specified directory and its subdirectories
      * \endcode
      */
-    uint64_t directory_size(const std::filesystem::path& path) {
+    uint64_t directory_size(const fs::path& path) {
         uint64_t size = 0;
         try {
-            for (const auto& entry : std::filesystem::recursive_directory_iterator(path)) {
+            for (const auto& entry : fs::recursive_directory_iterator(path)) {
                 try {
-                    size += std::filesystem::file_size(entry);
-                } catch (const std::filesystem::filesystem_error& ex) {
+                    size += fs::file_size(entry);
+                } catch (const fs::filesystem_error& ex) {
                     // Handle error while getting file size
                     std::cerr << "Error getting file size: " << ex.what() << std::endl;
                 }
             }
-        } catch (const std::filesystem::filesystem_error& ex) {
+        } catch (const fs::filesystem_error& ex) {
             // Handle error while iterating over directory
             std::cerr << "Error iterating directory: " << ex.what() << std::endl;
         }
         return size;
     }
+    
+    // Task 3 - Version 2
+    //****************************************************************
+    /**
+     * @brief Calculates the total size of all files and directories within a directory and its subdirectories, recursively.
+     *
+     * This function recursively traverses the directory structure starting from the specified path,
+     * accumulating the sizes of all files and directories encountered along the way.
+     * Errors that occur during traversal or while processing individual entries are handled.
+     *
+     * @param path The path to the directory for which the size is to be calculated.
+     * @return The total size, in bytes, of all files and directories within the specified directory and its subdirectories.
+     *
+     * @details This function recursively traverses the directory structure starting from the input path,
+     * considering both files and directories in the calculation of the total size.
+     * When encountering a directory, it recursively calls itself to include the size of subdirectories.
+     * Any errors encountered during traversal or while processing entries are caught and output to std::cerr.
+     *
+     * Example usage:
+     * \code{.cpp}
+     * std::filesystem::path directory_path = "/path/to/directory";
+     * uint64_t total_size = directory_size_recursive(directory_path);
+     * // total_size contains the combined size of all files and directories within the specified directory and its subdirectories
+     * \endcode
+     */
+    uint64_t directory_size_recursive(const fs::path& path) {
+        uint64_t size = 0;
+        try {
+            for (const auto& entry : fs::directory_iterator(path)) {
+                try {
+                    if (fs::is_regular_file(entry)) {
+                        size += fs::file_size(entry);
+                    } else if (fs::is_directory(entry)) {
+                        // Call recursion
+                        size += directory_size_recursive(entry);
+                    }
+                } catch (const fs::filesystem_error& ex) {
+                    // Handle error while processing the current entry
+                    std::cerr << "Error processing entry: " << entry.path() << ": " << ex.what() << std::endl;
+                }
+            }
+        } catch (const fs::filesystem_error& ex) {
+            // Handle error while iterating over directory
+            std::cerr << "Error iterating directory: " << path << ": " << ex.what() << std::endl;
+        }
+        return size;
+    }
+    
 }
 
 
 int main(int argc, char* argv[])
 {
-    const std::filesystem::path directory_path = "C:\\Users\\fmatj\\OneDrive\\Desktop\\Blueprints";
-    try {
-        const uint64_t size = koncar::directory_size(directory_path);
-        std::cout << "Directory size: " << size << " bytes" << std::endl;
-    } catch (const std::filesystem::filesystem_error& ex) {
-        std::cerr << "Error: " << ex.what() << std::endl;
-    }
-    return 0;
+
+    
+    // const std::vector<uint8_t> binary_data = { 0xBA, 0xAD, 0xF0, 0x0D };
+    // //const std::string hex_string = koncar::binary_to_string(binary_data);
+    // const std::string hex_string = koncar::binary_to_string(std::vector<uint8_t>{0xBA, 0xAD, 0xF0, 0x0D});
+
+    
+    
+    // const koncar::fs::path directory_path_recursive = "C:\\Users\\fmatj\\OneDrive\\Desktop\\Blueprints";
+    // try {
+    //     const uint64_t size = koncar::directory_size(directory_path_recursive);
+    //     std::cout << "Directory size: " << size << " bytes" << std::endl;
+    // } catch (const std::filesystem::filesystem_error& ex) {
+    //     std::cerr << "Error: " << ex.what() << std::endl;
+    // }
+    // return 0;
+
+    // const koncar::fs::path dir_path = "C:\\Users\\fmatj\\OneDrive\\Desktop\\Blueprints";
+    // try {
+    //     const uint64_t size = koncar::directory_size_recursive(dir_path);
+    //     std::cout << "Directory size: " << size << " bytes" << std::endl;
+    // } catch (const std::filesystem::filesystem_error& ex) {
+    //     std::cerr << "Error: " << ex.what() << std::endl;
+    // }
+    // return 0;
+
+
+
+    
+    //deti v header
+    // meknuti ne koristene includove
+    // pogledati dal se komentari poklapaju
+
+    
+    // mozda dodati jos koju verziju za neke starije standarde
 }
