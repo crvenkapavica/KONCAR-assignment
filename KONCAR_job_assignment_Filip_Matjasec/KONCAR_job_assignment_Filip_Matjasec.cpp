@@ -1,14 +1,12 @@
-#include <cstdio>
+#include <deque>
 #include <filesystem>
 #include <iostream>
 #include <ostream>
 #include <vector>
 #include <initializer_list>
 #include <iomanip>
-#include <map>
-#include <queue>
 #include <sstream>
-#include <stack>
+#include <vector>
 
 namespace koncar {
 
@@ -83,18 +81,21 @@ namespace koncar {
     // Task 2.1
     //****************************************************************
     /**
-     * @brief Converts a binary data vector to a hexadecimal string representation.
+     * @brief Converts binary data to a hexadecimal string representation.
      *
      * This function takes a vector of binary data and converts it into a hexadecimal string representation.
-     * Each byte in the input vector is converted to its hexadecimal representation and appended to the output string.
+     * Each byte in the input vector is converted to its hexadecimal representation and concatenated to form the output string.
+     * If an error occurs during the conversion process, an exception of type std::exception is thrown.
+     * The function handles the exception and returns an empty string to indicate failure.
      *
-     * @param data The vector of binary data to be converted to a string.
-     * @param uppercase Flag indicating whether the resulting hexadecimal string should be in uppercase (default is true).
-     * @return A hexadecimal string representation of the binary data.
+     * @param data The vector of binary data to be converted to a hexadecimal string.
+     * @param uppercase Optional flag indicating whether the resulting hexadecimal string should be in uppercase (default is true).
+     * @return A hexadecimal string representation of the input binary data, or an empty string if conversion fails.
      *
-     * @details This function iterates through each byte in the input data vector, converts it to hexadecimal,
+     * @details This function iterates through each byte in the input vector, converts it to hexadecimal,
      * and appends it to the output string. The resulting string contains the hexadecimal representation of the binary data.
-     * The optional parameter `uppercase` determines whether the hexadecimal characters should be in uppercase.
+     * Optionally, the function allows specifying whether the hexadecimal characters should be in uppercase.
+     * Any errors encountered during the conversion process are caught and handled.
      *
      * Example usage:
      * \code{.cpp}
@@ -104,47 +105,79 @@ namespace koncar {
      * \endcode
      */
     std::string binary_to_string(const std::vector<uint8_t>& data, const bool uppercase = true) {
-        std::ostringstream oss;
-        oss << std::hex << std::setfill('0');
-        if (uppercase)
-            oss << std::uppercase;
-        for (const auto byte : data)
-            oss << std::setw(2) << static_cast<int>(byte);
-        return oss.str();
+        try {
+            std::ostringstream oss;
+            oss << std::hex << std::setfill('0');
+            if (uppercase)
+                oss << std::uppercase;
+            for (const auto byte : data)
+                oss << std::setw(2) << static_cast<int>(byte);
+            return oss.str();
+        } catch (const std::exception& e) {
+            // Handle the exception
+            std::cerr << "Error: " << e.what() << std::endl;
+            // Return an empty string to indicate failure
+            return "";
+        }
     }
     
     // Task 2.2
     //****************************************************************
     /**
-     * @brief Converts a hexadecimal string to a binary data vector.
+     * @brief Converts a hexadecimal string to binary data.
      *
      * This function takes a hexadecimal string and converts it into a vector of binary data.
      * Each pair of hexadecimal characters in the input string represents one byte of binary data,
      * which is then appended to the output vector.
+     * If the input string contains invalid hexadecimal characters or results in bytes outside the range [0, 255],
+     * or if the input string does not contain an even number of characters, exception of type std::invalid_argument if thrown. 
+     * Any exceptions thrown during the conversion process are caught locally, and an empty vector is returned
+     * to indicate failure.
      *
      * @param str The hexadecimal string to be converted to binary data.
-     * @return A vector of binary data representing the input hexadecimal string.
+     * @return A vector of binary data representing the input hexadecimal string, or an empty vector if conversion fails.
      *
-     * @details This function iterates through the input string, processing each pair of hexadecimal characters
-     * and converting them into their corresponding binary representation. The resulting vector contains
-     * the binary representation of the input hexadecimal string.
+     * @details This function iterates through the input string, extracting pairs of hexadecimal characters
+     * and converting them into their corresponding binary representation. Each byte is then pushed into the output vector.
+     * It checks for the even length of the input string and ensures that each character in the substring
+     * contains valid hexadecimal characters. Any invalid characters or odd-length input strings result in an exception,
+     * which is caught and handled.
      *
      * Example usage:
      * \code{.cpp}
      * const std::string hex_string = "BAADF00D";
-     * const std::vector<uint8_t> binary_data = koncar::string_to_binary(hex_string);
+     * std::vector<uint8_t> binary_data = koncar::string_to_binary(hex_string);
      * // binary_data contains { 0xBA, 0xAD, 0xF0, 0x0D }
      * \endcode
      */
     std::vector<uint8_t> string_to_binary(const std::string& str) {
-        std::vector<uint8_t> result;
-        for (size_t i = 0; i < str.size(); i += 2) {
-            std::istringstream iss(str.substr(i, 2));
-            int byte;
-            iss >> std::hex >> byte;
-            result.push_back(static_cast<uint8_t>(byte));
+        try {
+            // Check if the input string has an even length
+            if (str.size() & 1) {
+                throw std::invalid_argument("Input string length must be even");
+            }
+        
+            std::vector<uint8_t> result;
+            for (size_t i = 0; i < str.size(); i += 2) {
+                std::string substr = str.substr(i, 2);
+                // Check if the substring contains valid hexadecimal characters
+                for (const char c : substr) {
+                    if (!std::isxdigit(c)) {
+                        throw std::invalid_argument("Invalid hexadecimal character: " + std::string(1, c));
+                    }
+                }
+                std::istringstream iss(substr);
+                int byte;
+                iss >> std::hex >> byte;
+                result.push_back(static_cast<uint8_t>(byte));
+            }
+            return result;
+        } catch (const std::exception& e) {
+            // Handle the exception
+            std::cerr << "Error: " << e.what() << std::endl;
+            // Return an empty vector to indicate failure
+            return {};
         }
-        return result;
     }
 
     // Task 3 - Version 1
@@ -166,8 +199,8 @@ namespace koncar {
      *
      * Example usage:
      * \code{.cpp}
-     * const koncar::fs::path directory_path = "path";
-     * const uint64_t total_size = directory_size(directory_path);
+     * const koncar::fs::path directory_path = "Path\\ToFile";
+     * const uint64_t total_size = koncar::directory_size(directory_path);
      * // total_size contains the combined size of all files and directories within the specified directory and its subdirectories
      * \endcode
      */
@@ -208,8 +241,8 @@ namespace koncar {
      *
      * Example usage:
      * \code{.cpp}
-     * const koncar::fs::path directory_path = "path";
-     * const uint64_t total_size = directory_size_recursive(directory_path);
+     * const koncar::fs::path directory_path = "Path\\ToFile";
+     * const uint64_t total_size = koncar::directory_size_recursive(directory_path);
      * // total_size contains the combined size of all files and directories within the specified directory and its subdirectories
      * \endcode
      */
@@ -236,44 +269,4 @@ namespace koncar {
         return size;
     }
     
-}
-
-
-int main(int argc, char* argv[])
-{
-
-    
-    // const std::vector<uint8_t> binary_data = { 0xBA, 0xAD, 0xF0, 0x0D };
-    // //const std::string hex_string = koncar::binary_to_string(binary_data);
-    // const std::string hex_string = koncar::binary_to_string(std::vector<uint8_t>{0xBA, 0xAD, 0xF0, 0x0D});
-
-    
-    
-    // const koncar::fs::path directory_path_recursive = "C:\\Users\\fmatj\\OneDrive\\Desktop\\Blueprints";
-    // try {
-    //     const uint64_t size = koncar::directory_size(directory_path_recursive);
-    //     std::cout << "Directory size: " << size << " bytes" << std::endl;
-    // } catch (const std::filesystem::filesystem_error& ex) {
-    //     std::cerr << "Error: " << ex.what() << std::endl;
-    // }
-    // return 0;
-
-    // const koncar::fs::path dir_path = "C:\\Users\\fmatj\\OneDrive\\Desktop\\Blueprints";
-    // try {
-    //     const uint64_t size = koncar::directory_size_recursive(dir_path);
-    //     std::cout << "Directory size: " << size << " bytes" << std::endl;
-    // } catch (const std::filesystem::filesystem_error& ex) {
-    //     std::cerr << "Error: " << ex.what() << std::endl;
-    // }
-    // return 0;
-
-
-
-    
-    //deti v header
-    // meknuti ne koristene includove
-    // pogledati dal se komentari poklapaju
-    // provjeriti dal to kaj pise v usage odgovara namespace-ima.
-    
-    // mozda dodati jos koju verziju za neke starije standarde
 }
