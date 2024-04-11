@@ -40,7 +40,7 @@ namespace koncar {
      * Example usage:
      * \code{.cpp}
      * std::vector<int> vector;
-     * add_range(vector, 1, 2, 3, 4, 5);
+     * koncar::add_range(vector, 1, 2, 3, 4, 5);
      * // vector now contains {1, 2, 3, 4, 5}
      * \endcode
      */
@@ -71,7 +71,7 @@ namespace koncar {
      * Example usage:
      * \code{.cpp}
      * std::vector<int> vector;
-     * add_to_container(vector, {1, 2, 3, 4, 5});
+     * koncar::add_to_container(vector, {1, 2, 3, 4, 5});
      * // vector now contains {1, 2, 3, 4, 5}
      * \endcode
      */
@@ -132,7 +132,7 @@ namespace koncar {
      * Example usage:
      * \code{.cpp}
      * const std::string hex_string = "BAADF00D";
-     * const std::vector<uint8_t> binary_data = string_to_binary(hex_string);
+     * const std::vector<uint8_t> binary_data = koncar::string_to_binary(hex_string);
      * // binary_data contains { 0xBA, 0xAD, 0xF0, 0x0D }
      * \endcode
      */
@@ -150,7 +150,8 @@ namespace koncar {
     // Task 3 - Version 1
     //****************************************************************
     /**
-     * @brief Computes the total size of all files and directories within a specified directory and its subdirectories.
+     * @brief Computes the total size of all files and directories within a specified directory and its subdirectories
+     * using recursive_directory_iterator.
      *
      * This function iterates over all files and directories within the specified directory and its subdirectories,
      * accumulating the sizes of all encountered files. Errors that occur during traversal or while processing individual
@@ -165,7 +166,7 @@ namespace koncar {
      *
      * Example usage:
      * \code{.cpp}
-     * const std::filesystem::path directory_path = "/path/to/directory";
+     * const koncar::fs::path directory_path = "path";
      * const uint64_t total_size = directory_size(directory_path);
      * // total_size contains the combined size of all files and directories within the specified directory and its subdirectories
      * \endcode
@@ -191,7 +192,7 @@ namespace koncar {
     // Task 3 - Version 2
     //****************************************************************
     /**
-     * @brief Calculates the total size of all files and directories within a directory and its subdirectories, recursively.
+     * @brief Calculates the total size of all files and directories within a directory and its subdirectories using recursion.
      *
      * This function recursively traverses the directory structure starting from the specified path,
      * accumulating the sizes of all files and directories encountered along the way.
@@ -201,14 +202,14 @@ namespace koncar {
      * @return The total size, in bytes, of all files and directories within the specified directory and its subdirectories.
      *
      * @details This function recursively traverses the directory structure starting from the input path,
-     * considering both files and directories in the calculation of the total size.
+     * considering both files and directories in the computation of the total size.
      * When encountering a directory, it recursively calls itself to include the size of subdirectories.
      * Any errors encountered during traversal or while processing entries are caught and output to std::cerr.
      *
      * Example usage:
      * \code{.cpp}
-     * std::filesystem::path directory_path = "/path/to/directory";
-     * uint64_t total_size = directory_size_recursive(directory_path);
+     * const koncar::fs::path directory_path = "path";
+     * const uint64_t total_size = directory_size_recursive(directory_path);
      * // total_size contains the combined size of all files and directories within the specified directory and its subdirectories
      * \endcode
      */
@@ -272,7 +273,7 @@ int main(int argc, char* argv[])
     //deti v header
     // meknuti ne koristene includove
     // pogledati dal se komentari poklapaju
-
+    // provjeriti dal to kaj pise v usage odgovara namespace-ima.
     
     // mozda dodati jos koju verziju za neke starije standarde
 }

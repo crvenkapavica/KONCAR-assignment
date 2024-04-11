@@ -8,14 +8,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c8ce3b33-033b-4a7c-b862-2132bb0b317b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.KONCAR-assignment.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.KONCAR-assignment.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KONCAR_job_assignment_Filip_Matjasec/Debug/KONCAR_j.B48E8911.tlog/link.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/KONCAR_job_assignment_Filip_Matjasec/Debug/KONCAR_j.B48E8911.tlog/link.read.1.tlog" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KONCAR_job_assignment_Filip_Matjasec/Debug/KONCAR_job_assignment_Filip_Matjasec.exe" beforeDir="false" afterPath="$PROJECT_DIR$/KONCAR_job_assignment_Filip_Matjasec/Debug/KONCAR_job_assignment_Filip_Matjasec.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KONCAR_job_assignment_Filip_Matjasec/Debug/KONCAR_job_assignment_Filip_Matjasec.ilk" beforeDir="false" afterPath="$PROJECT_DIR$/KONCAR_job_assignment_Filip_Matjasec/Debug/KONCAR_job_assignment_Filip_Matjasec.ilk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KONCAR_job_assignment_Filip_Matjasec/Debug/KONCAR_job_assignment_Filip_Matjasec.obj" beforeDir="false" afterPath="$PROJECT_DIR$/KONCAR_job_assignment_Filip_Matjasec/Debug/KONCAR_job_assignment_Filip_Matjasec.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KONCAR_job_assignment_Filip_Matjasec/Debug/KONCAR_job_assignment_Filip_Matjasec.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/KONCAR_job_assignment_Filip_Matjasec/Debug/KONCAR_job_assignment_Filip_Matjasec.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KONCAR_job_assignment_Filip_Matjasec/Debug/vc143.idb" beforeDir="false" afterPath="$PROJECT_DIR$/KONCAR_job_assignment_Filip_Matjasec/Debug/vc143.idb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KONCAR_job_assignment_Filip_Matjasec/Debug/vc143.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/KONCAR_job_assignment_Filip_Matjasec/Debug/vc143.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/KONCAR_job_assignment_Filip_Matjasec/KONCAR_job_assignment_Filip_Matjasec.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/KONCAR_job_assignment_Filip_Matjasec/KONCAR_job_assignment_Filip_Matjasec.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -94,7 +86,7 @@
       <updated>1712409816312</updated>
       <workItem from="1712409818028" duration="3300000" />
       <workItem from="1712748468702" duration="488000" />
-      <workItem from="1712748975104" duration="10198000" />
+      <workItem from="1712748975104" duration="10618000" />
     </task>
     <servers />
   </component>
