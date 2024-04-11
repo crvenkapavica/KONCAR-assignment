@@ -44,7 +44,17 @@ namespace koncar {
      */
     template <typename Container, typename... Args>
     void add_range(Container&& container, Args&&... args) {
-        (container.emplace_back(std::forward<Args>(args)), ...);
+        // If the container is an array
+        // if constexpr (std::is_array_v<std::remove_reference_t<Container>>) {
+        //     // Use indexing to assign values directly
+        //     constexpr std::size_t container_size = std::extent_v<std::remove_reference_t<Container>>;
+        //     static_assert(sizeof...(args) <= container_size, "Too many elements to add to the array");
+        //     std::size_t i = 0;
+        //     ((container[i++] = std::forward<Args>(args)), ...);
+        // }
+        // else {
+            (container.emplace_back(std::forward<Args>(args)), ...);
+       // }
     }
 
     // Task 1 - Version 2
@@ -69,7 +79,7 @@ namespace koncar {
      * Example usage:
      * \code{.cpp}
      * std::vector<int> vector;
-     * koncar::add_to_container(vector, {1, 2, 3, 4, 5});
+     * koncar::add_range(vector, {1, 2, 3, 4, 5});
      * // vector now contains {1, 2, 3, 4, 5}
      * \endcode
      */
@@ -269,4 +279,9 @@ namespace koncar {
         return size;
     }
     
+}
+
+int main ()
+{
+
 }
