@@ -8,18 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c8ce3b33-033b-4a7c-b862-2132bb0b317b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/KONCAR_job_assignment_Filip_Matjasec/Debug/KONCAR_j.B48E8911.tlog/CL.read.1.tlog" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KONCAR_job_assignment_Filip_Matjasec/Debug/KONCAR_j.B48E8911.tlog/CL.write.1.tlog" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/KONCAR_job_assignment_Filip_Matjasec/Debug/KONCAR_job_assignment_Filip_Matjasec.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.KONCAR-assignment.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.KONCAR-assignment.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KONCAR_job_assignment_Filip_Matjasec/Debug/KONCAR_j.B48E8911.tlog/CL.command.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/KONCAR_job_assignment_Filip_Matjasec/Debug/KONCAR_j.B48E8911.tlog/CL.command.1.tlog" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KONCAR_job_assignment_Filip_Matjasec/Debug/KONCAR_j.B48E8911.tlog/unsuccessfulbuild" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/KONCAR_job_assignment_Filip_Matjasec/Debug/KONCAR_job_assignment_Filip_Matjasec.exe" beforeDir="false" afterPath="$PROJECT_DIR$/KONCAR_job_assignment_Filip_Matjasec/Debug/KONCAR_job_assignment_Filip_Matjasec.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KONCAR_job_assignment_Filip_Matjasec/Debug/KONCAR_job_assignment_Filip_Matjasec.ilk" beforeDir="false" afterPath="$PROJECT_DIR$/KONCAR_job_assignment_Filip_Matjasec/Debug/KONCAR_job_assignment_Filip_Matjasec.ilk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KONCAR_job_assignment_Filip_Matjasec/Debug/KONCAR_job_assignment_Filip_Matjasec.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/KONCAR_job_assignment_Filip_Matjasec/Debug/KONCAR_job_assignment_Filip_Matjasec.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KONCAR_job_assignment_Filip_Matjasec/Debug/vc143.idb" beforeDir="false" afterPath="$PROJECT_DIR$/KONCAR_job_assignment_Filip_Matjasec/Debug/vc143.idb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KONCAR_job_assignment_Filip_Matjasec/Debug/vc143.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/KONCAR_job_assignment_Filip_Matjasec/Debug/vc143.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KONCAR_job_assignment_Filip_Matjasec/KONCAR_job_assignment_Filip_Matjasec.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/KONCAR_job_assignment_Filip_Matjasec/KONCAR_job_assignment_Filip_Matjasec.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,31 +32,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "C:\\Users\\fmatj\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\DecompilerCache",
-      "C:\\Users\\fmatj\\AppData\\Roaming\\JetBrains\\Rider2023.2\\resharper-host\\SourcesCache",
-      "C:\\Users\\fmatj\\AppData\\Local\\Symbols\\src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\fmatj\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\fmatj\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\fmatj\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="KONCAR_job_assignment_Filip_Matjsec" type="CppProject" factoryName="C++ Project">
       <configuration_1>
@@ -80,8 +69,10 @@
         <option name="WORKING_DIRECTORY" value="$(ProjectDir)" />
         <option name="PASS_PARENT_ENVS" value="1" />
         <option name="USE_EXTERNAL_CONSOLE" value="0" />
+        <option name="TERMINAL_INTERACTION_BEHAVIOR" value="AUTO_DETECT" />
       </configuration_1>
       <option name="DEFAULT_PROJECT_PATH" value="$PROJECT_DIR$/KONCAR_job_assignment_Filip_Matjasec/KONCAR_job_assignment_Filip_Matjasec.vcxproj" />
+      <option name="AUTO_SELECT_PRIORITY" value="0" />
       <method v="2">
         <option name="Build" />
       </method>
@@ -97,13 +88,16 @@
       <updated>1712409816312</updated>
       <workItem from="1712409818028" duration="3300000" />
       <workItem from="1712748468702" duration="488000" />
-      <workItem from="1712748975104" duration="16928000" />
+      <workItem from="1712748975104" duration="17121000" />
+      <workItem from="1716254413786" duration="33000" />
+      <workItem from="1716254472325" duration="132000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
